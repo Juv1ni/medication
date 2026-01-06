@@ -18,8 +18,8 @@ class HomePageScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FaIcon(
-                  FontAwesomeIcons.baby,
-                  size: 100,
+                  FontAwesomeIcons.children,
+                  size: 80,
                   color: Theme.of(context).colorScheme.primary,
                 ),
                 SizedBox(height: 20),

@@ -6,14 +6,14 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
 
-    scaffoldBackgroundColor: AppColors.background,
+    scaffoldBackgroundColor: AppColors.surface,
 
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       error: AppColors.error,
-      surface: AppColors.background,
+      surface: AppColors.surface,
       inversePrimary: AppColors.inversePrimary,
     ),
 
@@ -36,7 +36,7 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
-        foregroundColor: AppColors.background,
+        foregroundColor: AppColors.surface,
         textStyle: AppTextStyles.button,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         elevation: 2,
