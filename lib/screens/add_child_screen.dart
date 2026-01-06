@@ -45,7 +45,11 @@ class AddChildScreen extends StatelessWidget {
                 icon: FontAwesomeIcons.prescriptionBottleMedical,
               ),
               SizedBox(height: 12),
-              MyForm(labelText: 'Peso(kg)', keyboardType: TextInputType.number),
+              MyForm(
+                labelText: 'Peso(kg)',
+                keyboardType: TextInputType.number,
+                icon: FontAwesomeIcons.weightScale,
+              ),
             ],
           ),
         ),
