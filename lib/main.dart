@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medication/core/theme/app_theme.dart';
 import 'package:medication/screens/home_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: AppTheme.lightTheme,
       home: HomePageScreen(),
       routes: {'/home': (context) => HomePageScreen()},
     );
