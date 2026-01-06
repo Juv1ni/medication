@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medication/core/theme/app_theme.dart';
+import 'package:medication/screens/add_child_screen.dart';
 import 'package:medication/screens/home_screen.dart';
 
 void main() {
@@ -16,7 +17,10 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
       home: HomePageScreen(),
-      routes: {'/home': (context) => HomePageScreen()},
+      routes: {
+        '/home': (context) => HomePageScreen(),
+        '/add_child': (context) => AddChildScreen(),
+      },
     );
   }
 }

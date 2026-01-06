@@ -7,16 +7,9 @@ class HomePageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('MedKids', style: TextStyle(fontWeight: FontWeight.bold)),
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: FaIcon(FontAwesomeIcons.pills),
-        ),
-        backgroundColor: Colors.lightBlueAccent,
-      ),
+      //backgroundColor: Theme.of(context).colorScheme.surface,
+      appBar: AppBar(title: const Text('MedKids')),
+
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -27,35 +20,31 @@ class HomePageScreen extends StatelessWidget {
                 FaIcon(
                   FontAwesomeIcons.baby,
                   size: 100,
-                  color: Colors.lightBlueAccent,
+                  color: Theme.of(context).colorScheme.primary,
                 ),
                 SizedBox(height: 20),
                 Text(
                   'Quem vamos cuidar hoje?',
-                  style: TextStyle(fontSize: 16),
-                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 SizedBox(height: 40),
                 ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlueAccent,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 14,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24),
-                    ),
-                    elevation: 2,
-                  ),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/add_child');
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
-                      FaIcon(FontAwesomeIcons.child, size: 16),
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.child,
+                        size: 16,
+                        color: Theme.of(context).colorScheme.surface,
+                      ),
                       SizedBox(width: 8),
-                      Text('Adicionar Criança'),
+                      Text(
+                        'Adicionar Criança',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
                     ],
                   ),
                 ),

@@ -14,6 +14,7 @@ class AppTheme {
       secondary: AppColors.secondary,
       error: AppColors.error,
       surface: AppColors.background,
+      inversePrimary: AppColors.inversePrimary,
     ),
 
     textTheme: const TextTheme(
@@ -23,11 +24,22 @@ class AppTheme {
       labelLarge: AppTextStyles.button,
     ),
 
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primary,
+      foregroundColor: AppColors.primary,
+      elevation: 0,
+      centerTitle: true,
+      titleTextStyle: AppTextStyles.title.copyWith(color: Colors.white),
+      iconTheme: const IconThemeData(color: Colors.white),
+    ),
+
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.background,
         textStyle: AppTextStyles.button,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        elevation: 2,
       ),
     ),
   );

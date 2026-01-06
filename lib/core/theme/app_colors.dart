@@ -4,6 +4,7 @@ class AppColors {
   // Cores principais
   static const primary = Color(0xFF4CAF50);
   static const secondary = Color(0xFF81D4FA);
+  static const inversePrimary = Color(0xFFAE4CAB);
 
   // Fundo
   static const background = Color(0xFFFAFAFA);
