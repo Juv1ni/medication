@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // Cores principais
-  static const primary = Colors.blue;
-  static const secondary = Colors.lightBlueAccent;
-  static const inversePrimary = Colors.orangeAccent;
+  static const primary = Color(0xFF445EF2);
+  static const secondary = Color(0xFF5C73F2);
+  static const tertiary = Color(0xFF6695F2);
+  static const onTertiary = Color(0xFF91BBF2);
+  static const inversePrimary = Color(0xFFBBA10D);
 
   // Fundo
   static const surface = Color(0xFFFFFFFF);
@@ -14,5 +16,5 @@ class AppColors {
   static const textSecondary = Color(0xFF607D8B);
 
   // Estados
-  static const error = Color(0xFFE57373);
+  static const error = Color(0xFFF24171);
 }

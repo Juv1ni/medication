@@ -14,10 +14,16 @@ class AppTextStyles {
     color: AppColors.textSecondary,
   );
 
-  static const body = TextStyle(fontSize: 14, color: AppColors.textPrimary);
+  static const body = TextStyle(fontSize: 12, color: AppColors.textPrimary);
 
   static const button = TextStyle(
     fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
+  static const mediumButton = TextStyle(
+    fontSize: 12,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   );

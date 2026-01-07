@@ -12,6 +12,8 @@ class AppTheme {
       seedColor: AppColors.primary,
       primary: AppColors.primary,
       secondary: AppColors.secondary,
+      tertiary: AppColors.tertiary,
+      onTertiary: AppColors.onTertiary,
       error: AppColors.error,
       surface: AppColors.surface,
       inversePrimary: AppColors.inversePrimary,
@@ -22,6 +24,7 @@ class AppTheme {
       titleMedium: AppTextStyles.subtitle,
       bodyMedium: AppTextStyles.body,
       labelLarge: AppTextStyles.button,
+      labelMedium: AppTextStyles.mediumButton,
     ),
 
     appBarTheme: AppBarTheme(
@@ -37,9 +40,8 @@ class AppTheme {
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,
         foregroundColor: AppColors.surface,
-        textStyle: AppTextStyles.button,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        elevation: 2,
+        elevation: 1,
       ),
     ),
   );

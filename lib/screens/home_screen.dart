@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:medication/widgets/my_button.dart';
 
 class HomePageScreen extends StatelessWidget {
   const HomePageScreen({super.key});
@@ -7,7 +8,7 @@ class HomePageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(title: const Text('MedKids')),
 
       body: SingleChildScrollView(
@@ -20,33 +21,37 @@ class HomePageScreen extends StatelessWidget {
                 FaIcon(
                   FontAwesomeIcons.children,
                   size: 80,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondary,
                 ),
                 SizedBox(height: 20),
                 Text(
-                  'Quem vamos cuidar hoje?',
+                  'De quem vamos cuidar hoje?',
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                SizedBox(height: 40),
-                ElevatedButton(
+                SizedBox(height: 20),
+                Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Center(
+                      child: Text(
+                        'Nenhuma criança cadastrada.',
+                        style: Theme.of(context).textTheme.labelLarge,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                MyButton(
+                  text: 'Adicionar Criança',
                   onPressed: () {
                     Navigator.popAndPushNamed(context, '/add_child');
                   },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FaIcon(
-                        FontAwesomeIcons.child,
-                        size: 16,
-                        color: Theme.of(context).colorScheme.surface,
-                      ),
-                      SizedBox(width: 8),
-                      Text(
-                        'Adicionar Criança',
-                        style: Theme.of(context).textTheme.labelLarge,
-                      ),
-                    ],
-                  ),
+                  icon: FontAwesomeIcons.child,
                 ),
               ],
             ),
