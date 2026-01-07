@@ -34,10 +34,11 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               SizedBox(height: 8),
-              MyForm(text: 'Nome Completo'),
+              MyForm(text: 'Nome Completo', hintText: 'Ex.: Ana Maria'),
               SizedBox(height: 12),
               MyForm(
                 text: 'Data de Nascimento',
+                hintText: 'DD/MM/AAAA',
                 icon: FontAwesomeIcons.calendarDays,
                 keyboardType: TextInputType.datetime,
               ),
@@ -51,6 +52,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
                   ),
                 ],
               ),
+              SizedBox(height: 8),
               Row(
                 children: [
                   Expanded(
@@ -88,6 +90,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
               SizedBox(height: 12),
               MyForm(
                 text: 'Peso(kg)',
+                hintText: 'Ex.: 12.5',
                 keyboardType: TextInputType.number,
                 icon: FontAwesomeIcons.weightScale,
               ),
