@@ -31,7 +31,7 @@ class AddChildController {
       birthDate: parseDate(birthController.text),
       gender: selectedGender!,
       allergies: allergiesController.text,
-      weight: double.parse(weightController.text),
+      weight: double.parse(weightController.text.replaceAll(',', '.')),
     );
   }
 

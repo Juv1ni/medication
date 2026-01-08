@@ -123,7 +123,9 @@ class _AddChildScreenState extends State<AddChildScreen> {
               MyForm(
                 text: 'Peso(kg)',
                 hintText: 'Ex.: 12.5',
-                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                keyboardType: const TextInputType.numberWithOptions(
+                  decimal: true,
+                ),
                 icon: FontAwesomeIcons.weightScale,
                 controller: controller.weightController,
                 mask: '##.##',

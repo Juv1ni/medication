@@ -1,17 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medication/models/child_model.dart';
+import 'package:medication/models/children_storage.dart';
+import 'package:medication/widgets/delete_child_dialog.dart';
+import 'package:medication/widgets/kid_card.dart';
 import 'package:medication/widgets/my_button.dart';
+import 'package:medication/widgets/no_kid.dart';
 
-class HomePageScreen extends StatefulWidget {
-  const HomePageScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   final List<ChildModel> children = [];
+  ChildModel? selectedChild;
+
+  @override
+  void initState() {
+    super.initState();
+    loadChildren();
+  }
+
+  Future<void> loadChildren() async {
+    final savedChildren = await ChildrenStorage.load();
+    setState(() {
+      children
+        ..clear()
+        ..addAll(savedChildren);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +57,57 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 SizedBox(height: 20),
-                Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Theme.of(context).colorScheme.tertiary,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Center(
-                      child: Text(
-                        'Nenhuma criança cadastrada.',
-                        style: Theme.of(context).textTheme.labelLarge,
+                children.isEmpty
+                    ? NoKid()
+                    : Column(
+                        children: children.map((child) {
+                          return KidCard(
+                            child: child,
+                            selected: selectedChild == child,
+                            onSelect: () {
+                              setState(() {
+                                selectedChild = child;
+                              });
+                              Navigator.pushNamed(
+                                context,
+                                '/medications',
+                                arguments: child,
+                              );
+                            },
+                            onEdit: () async {
+                              final result = await Navigator.pushNamed(
+                                context,
+                                '/edit_child',
+                                arguments: child,
+                              );
+                              if (result != null && result is ChildModel) {
+                                setState(() {
+                                  final index = children.indexOf(child);
+                                  children[index] = result;
+                                });
+                                await ChildrenStorage.save(children);
+                              }
+                            },
+                            onDelete: () async {
+                              final confirm = await showDialog<bool>(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) =>
+                                    DeleteChildDialog(child: child),
+                              );
+                              if (confirm == true) {
+                                setState(() {
+                                  children.remove(child);
+                                  if (selectedChild == child) {
+                                    selectedChild = null;
+                                  }
+                                });
+                                await ChildrenStorage.save(children);
+                              }
+                            },
+                          );
+                        }).toList(),
                       ),
-                    ),
-                  ),
-                ),
                 SizedBox(height: 20),
                 MyButton(
                   text: 'Adicionar Criança',
@@ -62,9 +117,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       '/add_child',
                     );
 
-                    if (result != null) {
-                      final child = result as ChildModel;
-                      print(child.name);
+                    if (result != null && result is ChildModel) {
+                      setState(() {
+                        children.add(result);
+                      });
+                      await ChildrenStorage.save(children);
                     }
                   },
                   icon: FontAwesomeIcons.child,

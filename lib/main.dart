@@ -3,8 +3,9 @@ import 'package:medication/core/theme/app_theme.dart';
 import 'package:medication/screens/add_child_screen.dart';
 import 'package:medication/screens/home_screen.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,9 +17,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
-      home: HomePageScreen(),
+      home: HomeScreen(),
       routes: {
-        '/home': (context) => HomePageScreen(),
+        '/home': (context) => HomeScreen(),
         '/add_child': (context) => AddChildScreen(),
       },
     );
