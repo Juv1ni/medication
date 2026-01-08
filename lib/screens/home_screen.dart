@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:medication/models/child_model.dart';
 import 'package:medication/widgets/my_button.dart';
 
-class HomePageScreen extends StatelessWidget {
+class HomePageScreen extends StatefulWidget {
   const HomePageScreen({super.key});
+
+  @override
+  State<HomePageScreen> createState() => _HomePageScreenState();
+}
+
+class _HomePageScreenState extends State<HomePageScreen> {
+  final List<ChildModel> children = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +56,16 @@ class HomePageScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 MyButton(
                   text: 'Adicionar Criança',
-                  onPressed: () {
-                    Navigator.popAndPushNamed(context, '/add_child');
+                  onPressed: () async {
+                    final result = await Navigator.pushNamed(
+                      context,
+                      '/add_child',
+                    );
+
+                    if (result != null) {
+                      final child = result as ChildModel;
+                      print(child.name);
+                    }
                   },
                   icon: FontAwesomeIcons.child,
                 ),

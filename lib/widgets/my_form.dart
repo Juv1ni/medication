@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyForm extends StatelessWidget {
@@ -7,6 +8,8 @@ class MyForm extends StatelessWidget {
   final String? labelText;
   final TextInputType? keyboardType;
   final IconData? icon;
+  final String mask;
+  final TextEditingController? controller;
 
   const MyForm({
     super.key,
@@ -15,6 +18,8 @@ class MyForm extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.icon = FontAwesomeIcons.user,
     required this.text,
+    this.mask = '',
+    this.controller,
   });
 
   @override
@@ -26,6 +31,7 @@ class MyForm extends StatelessWidget {
           child: Text(text, style: Theme.of(context).textTheme.titleMedium),
         ),
         TextFormField(
+          controller: controller,
           decoration: InputDecoration(
             prefixIcon: Padding(
               padding: const EdgeInsets.only(top: 12, left: 5),
@@ -47,6 +53,9 @@ class MyForm extends StatelessWidget {
             ),
           ),
           keyboardType: keyboardType,
+          inputFormatters: mask.isNotEmpty
+              ? [MaskedInputFormatter(mask)]
+              : null,
         ),
       ],
     );

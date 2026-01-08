@@ -5,12 +5,14 @@ class MySelectButton extends StatelessWidget {
   final IconData? icon;
   final String text;
   final VoidCallback? onPressed;
+  final bool selected;
 
   const MySelectButton({
     super.key,
     this.icon,
     required this.text,
     this.onPressed,
+    required this.selected,
   });
 
   @override
@@ -18,8 +20,11 @@ class MySelectButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.tertiary,
+        backgroundColor: selected
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.tertiary,
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+        elevation: selected ? 2 : 0,
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
