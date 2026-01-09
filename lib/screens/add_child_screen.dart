@@ -30,7 +30,7 @@ class _AddChildScreenState extends State<AddChildScreen> {
         leading: IconButton(
           icon: FaIcon(FontAwesomeIcons.angleLeft, size: 26),
           onPressed: () {
-            Navigator.popAndPushNamed(context, '/home');
+            Navigator.pop(context);
           },
         ),
       ),
