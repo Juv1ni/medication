@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medication/core/theme/app_theme.dart';
-import 'package:medication/screens/add_child_screen.dart';
-import 'package:medication/screens/edit_child_screen.dart';
 import 'package:medication/screens/home_screen.dart';
 import 'package:medication/screens/medication_screen.dart';
 
@@ -22,8 +20,6 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       routes: {
         '/home': (context) => HomeScreen(),
-        '/add_child': (context) => AddChildScreen(),
-        '/edit_child': (context) => EditChildScreen(),
         '/medications': (context) => MedicationScreen(),
       },
     );

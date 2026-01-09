@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medication/models/child_model.dart';
 import 'package:medication/models/children_storage.dart';
+import 'package:medication/screens/add_child_screen.dart';
 import 'package:medication/widgets/delete_child_dialog.dart';
 import 'package:medication/widgets/kid_card.dart';
 import 'package:medication/widgets/my_button.dart';
@@ -75,14 +76,18 @@ class _HomeScreenState extends State<HomeScreen> {
                               );
                             },
                             onEdit: () async {
-                              final result = await Navigator.pushNamed(
+                              final result = await Navigator.push(
                                 context,
-                                '/edit_child',
-                                arguments: child,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      AddChildScreen(child: child),
+                                ),
                               );
                               if (result != null && result is ChildModel) {
                                 setState(() {
-                                  final index = children.indexOf(child);
+                                  final index = children.indexWhere(
+                                    (c) => c.id == child.id,
+                                  );
                                   children[index] = result;
                                 });
                                 await ChildrenStorage.save(children);
@@ -112,9 +117,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 MyButton(
                   text: 'Adicionar Criança',
                   onPressed: () async {
-                    final result = await Navigator.pushNamed(
+                    final result = await Navigator.push(
                       context,
-                      '/add_child',
+                      MaterialPageRoute(builder: (context) => AddChildScreen()),
                     );
 
                     if (result != null && result is ChildModel) {

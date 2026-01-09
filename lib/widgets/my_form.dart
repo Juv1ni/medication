@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 class MyForm extends StatelessWidget {
   final String text;
@@ -8,7 +9,7 @@ class MyForm extends StatelessWidget {
   final String? labelText;
   final TextInputType? keyboardType;
   final IconData? icon;
-  final String mask;
+  final String? mask;
   final TextEditingController? controller;
 
   const MyForm({
@@ -18,12 +19,18 @@ class MyForm extends StatelessWidget {
     this.keyboardType = TextInputType.text,
     this.icon = FontAwesomeIcons.user,
     required this.text,
-    this.mask = '',
+    this.mask,
     this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
+    final inputFormatters = mask != null
+        ? [
+            MaskTextInputFormatter(mask: mask, filter: {"#": RegExp(r'[0-9]')}),
+          ]
+        : <TextInputFormatter>[];
+
     return Column(
       children: [
         Align(
@@ -53,9 +60,7 @@ class MyForm extends StatelessWidget {
             ),
           ),
           keyboardType: keyboardType,
-          inputFormatters: mask.isNotEmpty
-              ? [MaskedInputFormatter(mask)]
-              : null,
+          inputFormatters: inputFormatters,
         ),
       ],
     );

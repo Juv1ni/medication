@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:medication/controllers/add_child_controller.dart';
+import 'package:medication/controllers/child_controller.dart';
+import 'package:medication/models/child_model.dart';
 import 'package:medication/models/gender_model.dart';
 import 'package:medication/widgets/my_button.dart';
 import 'package:medication/widgets/my_form.dart';
 import 'package:medication/widgets/my_select_button.dart';
 
 class AddChildScreen extends StatefulWidget {
-  const AddChildScreen({super.key});
+  final ChildModel? child;
+
+  const AddChildScreen({super.key, this.child});
 
   @override
   State<AddChildScreen> createState() => _AddChildScreenState();
 }
 
 class _AddChildScreenState extends State<AddChildScreen> {
-  final controller = AddChildController();
+  late final ChildController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = ChildController();
+    if (widget.child != null) {
+      controller.fillFromChild(widget.child!);
+    }
+  }
 
   @override
   void dispose() {
@@ -26,7 +38,9 @@ class _AddChildScreenState extends State<AddChildScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cadastrar Criança'),
+        title: Text(
+          widget.child == null ? 'Cadastrar Criança' : 'Editar Criança',
+        ),
         leading: IconButton(
           icon: FaIcon(FontAwesomeIcons.angleLeft, size: 26),
           onPressed: () {
@@ -128,22 +142,29 @@ class _AddChildScreenState extends State<AddChildScreen> {
                 ),
                 icon: FontAwesomeIcons.weightScale,
                 controller: controller.weightController,
-                mask: '##.##',
+                mask: '###.##',
               ),
               SizedBox(height: 20),
               MyButton(
-                text: 'Salvar',
+                text: widget.child == null ? 'Salvar' : 'Atualizar',
                 icon: FontAwesomeIcons.floppyDisk,
                 onPressed: () {
                   if (!controller.isValid()) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Preencha todos os campos obrigatórios.'),
+                        backgroundColor: Theme.of(context).colorScheme.error,
+                        content: Text(
+                          'Preencha todos os campos obrigatórios.',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
                       ),
                     );
                     return;
                   }
-                  Navigator.pop(context, controller.buildChild());
+                  Navigator.pop(
+                    context,
+                    controller.buildChild(id: widget.child?.id),
+                  );
                 },
               ),
             ],
