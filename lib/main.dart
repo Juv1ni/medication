@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medication/core/theme/app_theme.dart';
 import 'package:medication/screens/home_screen.dart';
-import 'package:medication/screens/medication_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,10 +17,6 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: AppTheme.lightTheme,
       home: HomeScreen(),
-      routes: {
-        '/home': (context) => HomeScreen(),
-        '/medications': (context) => MedicationScreen(),
-      },
     );
   }
 }

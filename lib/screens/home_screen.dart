@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medication/models/child_model.dart';
 import 'package:medication/models/children_storage.dart';
 import 'package:medication/screens/add_child_screen.dart';
+import 'package:medication/screens/symptoms_screen.dart';
 import 'package:medication/widgets/delete_child_dialog.dart';
 import 'package:medication/widgets/kid_card.dart';
 import 'package:medication/widgets/my_button.dart';
@@ -69,10 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               setState(() {
                                 selectedChild = child;
                               });
-                              Navigator.pushNamed(
+                              Navigator.push(
                                 context,
-                                '/medications',
-                                arguments: child,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      SymptomsScreen(child: child),
+                                ),
                               );
                             },
                             onEdit: () async {
