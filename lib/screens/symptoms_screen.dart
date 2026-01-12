@@ -60,7 +60,7 @@ class _SymptomsScreenState extends State<SymptomsScreen> {
                     color: primaryColor,
                   ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 8),
                 Text(
                   'Selecione um ou mais sintomas abaixo:',
                   style: TextStyle(
